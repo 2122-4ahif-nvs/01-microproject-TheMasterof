@@ -1,4 +1,5 @@
 .mvn/
+db/
 
 #Maven
 target/
