@@ -1,0 +1,60 @@
+= Flightplaner
+Marcel Plakolb
+1.0.0, 2021-11-11
+ifndef::imagesdir[:imagesdir: images]
+:icons: font
+:sectnums:
+:toc: left
+
+ifdef::backend-html5[]
+
+== Description
+
+=== Class-Diagram
+
+[plantuml, cld, png]
+
+----
+@startuml
+
+class Plane{
+-model :String
+-maxPassangerAmount :int
+-passanger :List<Passanger>
+}
+
+class Passenger{
+-airplaneClass :AirplaneClass
+-seatNum :String
+}
+
+class PlaneSchedule{
+-departure :LocalDateTime
+-arrival :LocalDateTime
+-destination :String
+-origin :String
+}
+
+class PlaneAssignment{
+-plane :Plane
+-schedule :PlaneSchedule
+}
+
+enum AirplaneClass{
+FIRST,
+BUSINESS,
+ECONOMY
+}
+
+Passenger "*"-right-"1" Plane :travels by >
+Plane "*"-right-"*" PlaneSchedule :has >
+Passenger -up- AirplaneClass
+(Plane, PlaneSchedule) .. PlaneAssignment
+@enduml
+----
+
+
+=== Description
+- This microproject handels schedules for pilots, passengers and planes.
+
+
