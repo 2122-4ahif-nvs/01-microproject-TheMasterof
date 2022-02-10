@@ -11,37 +11,50 @@ ifdef::backend-html5[]
 == Description
 
 === Class-Diagram
+
 [plantuml, cld, png]
+
 ----
 @startuml
-class Pilot{
--firstname :String
--lastname :String
--salary :Double
-}
+
 class Plane{
 -model :String
-}
-class PilotSchedule{
--startTime :LocalDateTime
--endTime :LocalDateTime
-}
-class PlaneSchedule{
--startTime :LocalDateTime
--endTime :LocalDateTime
-}
-class PlaneAssignment{
+-maxPassangerAmount :int
+-passanger :List<Passanger>
 }
 
-Pilot "1"-right->"*" PilotSchedule :has >
-PilotSchedule "*"-right->"1" Plane :has >
-Plane "*"-right->"*" PlaneSchedule :has >
+class Passenger{
+-airplaneClass :AirplaneClass
+-seatNum :String
+}
+
+class PlaneSchedule{
+-departure :LocalDateTime
+-arrival :LocalDateTime
+-destination :String
+-origin :String
+}
+
+class PlaneAssignment{
+-plane :Plane
+-schedule :PlaneSchedule
+}
+
+enum AirplaneClass{
+FIRST,
+BUSINESS,
+ECONOMY
+}
+
+Passenger "*"-right-"1" Plane :travels by >
+Plane "*"-right-"*" PlaneSchedule :has >
+Passenger -up- AirplaneClass
 (Plane, PlaneSchedule) .. PlaneAssignment
 @enduml
 ----
 
 
 === Description
-- This Project acts as a planer for pilots and aircrafts.
+- This microproject handels schedules for pilots, passengers and planes.
 
 

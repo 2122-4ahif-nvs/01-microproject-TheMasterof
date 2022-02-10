@@ -1,7 +1,6 @@
-package at.htl.Controller;
+package at.htl.controller;
 
-import at.htl.Entity.Pilot;
-import org.hibernate.annotations.common.reflection.XMethod;
+import at.htl.entity.Passenger;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -10,12 +9,12 @@ import javax.transaction.Transactional;
 
 @ApplicationScoped
 @Transactional
-public class PilotRepository {
+public class PassengerRepository {
 
     @Inject
     EntityManager em;
 
-    public void save(Pilot pilot) {
+    public void save(Passenger pilot) {
         em.persist(pilot);
     }
 }
